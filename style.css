@@ -1,0 +1,14 @@
+:root {
+  --cl-1: #007dc3;
+  --cl-2: #a4d7f4;
+  --cl-3: #aa1120;
+  --cl-3: #0c2749;
+  --cl-3: #003dc5;
+}
+
+body {
+  background-color: var(--cl-2);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
