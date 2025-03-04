@@ -25,7 +25,7 @@ header {
   color: white;
 
   /*Background*/
-  background-image: url("Assets/Images/REMAXBanner.jpg");
+  background-image: url("../Assets/Images/REMAXBanner.jpg");
   background-size: cover;
   background-position-y: 20%;
   background-position-x: 18%;
@@ -36,8 +36,9 @@ header {
 
   /*Children*/
   .app-title {
-    font-size: 2.5em;
-    color: var(--cl-3);
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--cl-5);
   }
 
   img {
@@ -47,11 +48,13 @@ header {
 }
 
 nav {
-  background-color: var(--cl-4);
+  background-color: var(--cl-2);
   display: flex;
   justify-content: space-around;
   padding: 5px 0;
-  color: var(--cl-2);
+  color: var(--cl-4);
+  border-bottom: 2px solid var(--cl-1);
+  border-top: 2px solid var(--cl-1);
 
   /*Scroll behaviour*/
   position: sticky;
@@ -70,7 +73,7 @@ nav {
   }
 
   .nav-item {
-    color: var(--cl-2);
+    color: var(--cl-4);
     text-decoration: none;
     padding: 10px;
   }
@@ -86,7 +89,8 @@ main {
   grid-template-rows: 1fr 1fr;
   gap: 20px;
   padding: 20px;
-  padding-top: 60px;
+  padding-top: 2rem;
+  /* padding-top: 40px; */
 }
 
 #due {
@@ -157,7 +161,8 @@ main {
       max-height: 15vh;
     }
     .app-title {
-      font-size: 1.8em;
+      width: 10%;
+      font-size: 1.3em;
     }
   }
 
