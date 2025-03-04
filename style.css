@@ -2,13 +2,67 @@
   --cl-1: #007dc3;
   --cl-2: #a4d7f4;
   --cl-3: #aa1120;
-  --cl-3: #0c2749;
-  --cl-3: #003dc5;
+  --cl-4: #0c2749;
+  --cl-5: #003dc5;
 }
-
 body {
   background-color: var(--cl-2);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+
+  header {
+    > [logo] {
+      max-width: 35vw;
+      object-fit: fill;
+    }
+
+    > [title] {
+      font-size: medium;
+    }
+  }
+}
+
+header {
+  /* Container */
+  max-width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  /*Background*/
+  background-image: url("Assets/Images/REMAXBanner.jpg");
+  background-size: cover;
+  background-position-y: 20%;
+  background-position-x: 18%;
+
+  > [logo] {
+    max-height: 20vh;
+    z-index: 10;
+  }
+
+  > [title] {
+    color: aliceblue;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    z-index: 10;
+  }
+}
+
+[navbar] {
+  background-color: var(--cl-4);
+  color: var(--cl-2);
+  display: flex;
+
+  navbar {
+    width: 100%;
+    display: flex;
+    background-color: var(--cl-4);
+    justify-content: space-evenly;
+  }
 }
