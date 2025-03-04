@@ -15,18 +15,18 @@
       <div class="profile">
         <p>0</p>
       </div>
-      <a href="#" class="nav-item">Home</a>
-      <a href="#" class="nav-item">Stats</a>
-      <a href="#" class="nav-item">Activity</a>
-      <a href="#" class="nav-item">Stats</a>
+      <a href="#due" class="nav-item">Home</a>
+      <a href="#stats" class="nav-item">Stats</a>
+      <a href="#sheet" class="nav-item">Activity Sheet</a>
+      <!-- <a href="#" class="nav-item">Stats</a> -->
     </nav>
 
     <main>
-      <section class="due">
+      <section id="due">
         <h2>Actions Due Today:</h2>
         <div class="placeholder"></div>
       </section>
-      <section class="stats">
+      <section id="stats">
         <div class="placeholder"></div>
         <div class="buttons">
           <div class="button"></div>
@@ -36,10 +36,24 @@
           <div class="button"></div>
         </div>
       </section>
-      <section class="sheet">
+      <section id="sheet">
         <div class="placeholder"></div>
       </section>
     </main>
     <footer></footer>
+
+    <!-- scroll behaviour -->
+    <script>
+      window.addEventListener("scroll", function () {
+        const nav = document.querySelector("nav");
+        const headerHeight = document.querySelector("header").offsetHeight;
+
+        if (window.scrollY > headerHeight) {
+          nav.classList.add("fixed");
+        } else {
+          nav.classList.remove("fixed");
+        }
+      });
+    </script>
   </body>
 </html>

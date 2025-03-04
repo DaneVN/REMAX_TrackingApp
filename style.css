@@ -14,6 +14,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
 }
 
 header {
@@ -28,6 +29,10 @@ header {
   background-size: cover;
   background-position-y: 20%;
   background-position-x: 18%;
+
+  /*Scroll behaviour*/
+  position: relative;
+  z-index: 10;
 
   /*Children*/
   .app-title {
@@ -45,12 +50,23 @@ nav {
   background-color: var(--cl-4);
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
+  padding: 5px 0;
   color: var(--cl-2);
+
+  /*Scroll behaviour*/
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  transition: top 0.3s ease;
+  .fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+  }
 
   /*Children*/
   .profile {
-    padding: 5px;
+    padding: 0 5px;
   }
 
   .nav-item {
@@ -66,14 +82,14 @@ nav {
 
 main {
   display: grid;
-  grid-template-areas: "due stats sheet";
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
   gap: 20px;
   padding: 20px;
+  padding-top: 60px;
 }
 
-.due {
-  grid-area: due;
+#due {
   background-color: var(--cl-3);
   padding: 10px;
   color: white;
@@ -91,19 +107,18 @@ main {
   }
 }
 
-.stats {
-  grid-area: stats;
+#stats {
   background-color: var(--cl-1);
   padding: 10px;
   border-radius: var(--num-rounded);
 
   /*Children*/
   .placeholder {
-    border-radius: var(--num-rounded);
     background-color: var(--cl-5);
     height: 200px;
     width: 100%;
     margin-bottom: 10px;
+    border-radius: var(--num-rounded);
   }
   .buttons {
     display: flex;
@@ -117,18 +132,17 @@ main {
   }
 }
 
-.sheet {
-  grid-area: sheet;
+#sheet {
   background-color: var(--cl-1);
   padding: 10px;
   border-radius: var(--num-rounded);
+  grid-column-start: 2;
 
   /*Children*/
   .placeholder {
     background-color: var(--cl-1);
     height: 300px;
     width: 100%;
-    border-radius: var(--num-rounded);
   }
 }
 
@@ -148,8 +162,10 @@ main {
   }
 
   nav {
-    flex-direction: column;
-    text-align: center;
+    .nav-item,
+    .profile {
+      font-size: 10px;
+    }
   }
 
   main {
@@ -158,14 +174,20 @@ main {
       "stats"
       "sheet";
     grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 
-  .due .placeholder,
-  .sheet .placeholder {
+  #sheet,
+  #stats {
+    grid-column-start: 1;
+  }
+
+  #due .placeholder,
+  #sheet .placeholder {
     height: 200px;
   }
 
-  .stats .placeholder {
+  #stats .placeholder {
     height: 150px;
   }
 
