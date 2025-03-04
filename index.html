@@ -4,37 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>RE/MAX Unity Tracking App</title>
   </head>
   <body>
     <header>
-      <h1 title>TRACKING APP</h1>
-      <img logo src="Assets/Images/REMAXUnity.png" alt="RE/MAX Unity Logo" />
+      <span class="app-title">Tracking App</span>
+      <img src="Assets/Images/REMAXUnity.png" alt="RE/MAX Unity Logo" />
     </header>
-    <div navbar>
-      <navbar>
-        <div profile>
-          <!-- <img src="" alt="" /> -->
-          <p>0</p>
-        </div>
-        <div page>
-          <p>Home</p>
-        </div>
-
-        <div page>
-          <p>Stats</p>
-        </div>
-
-        <div page>
-          <p>Activities</p>
-        </div>
-      </navbar>
-    </div>
+    <nav>
+      <div class="profile">
+        <p>0</p>
+      </div>
+      <a href="#" class="nav-item">Home</a>
+      <a href="#" class="nav-item">Stats</a>
+      <a href="#" class="nav-item">Activity</a>
+      <a href="#" class="nav-item">Stats</a>
+    </nav>
 
     <main>
-      <section due></section>
-      <section stats></section>
-      <section sheet></section>
+      <section class="due">
+        <h2>Actions Due Today:</h2>
+        <div class="placeholder"></div>
+      </section>
+      <section class="stats">
+        <div class="placeholder"></div>
+        <div class="buttons">
+          <div class="button"></div>
+          <div class="button"></div>
+          <div class="button"></div>
+          <div class="button"></div>
+          <div class="button"></div>
+        </div>
+      </section>
+      <section class="sheet">
+        <div class="placeholder"></div>
+      </section>
     </main>
     <footer></footer>
   </body>

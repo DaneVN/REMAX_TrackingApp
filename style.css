@@ -4,12 +4,132 @@
   --cl-3: #aa1120;
   --cl-4: #0c2749;
   --cl-5: #003dc5;
+
+  --num-rounded: 10px;
 }
+
 body {
   background-color: var(--cl-2);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: white;
+
+  /*Background*/
+  background-image: url("Assets/Images/REMAXBanner.jpg");
+  background-size: cover;
+  background-position-y: 20%;
+  background-position-x: 18%;
+
+  /*Children*/
+  .app-title {
+    font-size: 2.5em;
+    color: var(--cl-3);
+  }
+
+  img {
+    max-height: 20vh;
+    object-fit: contain;
+  }
+}
+
+nav {
+  background-color: var(--cl-4);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  color: var(--cl-2);
+
+  /*Children*/
+  .profile {
+    padding: 5px;
+  }
+
+  .nav-item {
+    color: var(--cl-2);
+    text-decoration: none;
+    padding: 10px;
+  }
+
+  .nav-item:hover {
+    background-color: var(--cl-1);
+  }
+}
+
+main {
+  display: grid;
+  grid-template-areas: "due stats sheet";
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.due {
+  grid-area: due;
+  background-color: var(--cl-3);
+  padding: 10px;
+  color: white;
+  border-radius: var(--num-rounded);
+
+  /*Children*/
+  h2 {
+    margin: 0 0 10px 0;
+  }
+  .placeholder {
+    background-color: var(--cl-1);
+    height: 300px;
+    width: 100%;
+    border-radius: var(--num-rounded);
+  }
+}
+
+.stats {
+  grid-area: stats;
+  background-color: var(--cl-1);
+  padding: 10px;
+  border-radius: var(--num-rounded);
+
+  /*Children*/
+  .placeholder {
+    border-radius: var(--num-rounded);
+    background-color: var(--cl-5);
+    height: 200px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button {
+    background-color: var(--cl-4);
+    height: 50px;
+    width: 18%;
+    border-radius: var(--num-rounded);
+  }
+}
+
+.sheet {
+  grid-area: sheet;
+  background-color: var(--cl-1);
+  padding: 10px;
+  border-radius: var(--num-rounded);
+
+  /*Children*/
+  .placeholder {
+    background-color: var(--cl-1);
+    height: 300px;
+    width: 100%;
+    border-radius: var(--num-rounded);
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -18,51 +138,38 @@ body {
   }
 
   header {
-    > [logo] {
+    img {
       max-width: 35vw;
-      object-fit: fill;
+      max-height: 15vh;
     }
-
-    > [title] {
-      font-size: medium;
+    .app-title {
+      font-size: 1.8em;
     }
   }
-}
 
-header {
-  /* Container */
-  max-width: 100vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  /*Background*/
-  background-image: url("Assets/Images/REMAXBanner.jpg");
-  background-size: cover;
-  background-position-y: 20%;
-  background-position-x: 18%;
-
-  > [logo] {
-    max-height: 20vh;
-    z-index: 10;
+  nav {
+    flex-direction: column;
+    text-align: center;
   }
 
-  > [title] {
-    color: aliceblue;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    z-index: 10;
+  main {
+    grid-template-areas:
+      "due"
+      "stats"
+      "sheet";
+    grid-template-columns: 1fr;
   }
-}
 
-[navbar] {
-  background-color: var(--cl-4);
-  color: var(--cl-2);
-  display: flex;
+  .due .placeholder,
+  .sheet .placeholder {
+    height: 200px;
+  }
 
-  navbar {
-    width: 100%;
-    display: flex;
-    background-color: var(--cl-4);
-    justify-content: space-evenly;
+  .stats .placeholder {
+    height: 150px;
+  }
+
+  .stats .button {
+    height: 40px;
   }
 }
