@@ -12,19 +12,25 @@ export default function NavBar() {
       </div>
       <a
         href="#home"
-        className="text-center hover:bg-[var(--cl-6)] rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 py-1 px-2.5 no-underline"
+        className="text-center active:bg-[var(--cl-6)] hover:bg-[var(--cl-3)] 
+        rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 pt-3 px-2 
+        no-underline font-bold text-xs"
       >
         Home
       </a>
       <a
         href="#stats"
-        className="text-center hover:bg-[var(--cl-6)] rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 py-1 px-2.5 no-underline"
+        className="text-center active:bg-[var(--cl-6)] hover:bg-[var(--cl-3)]  
+        rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 pt-3 px-2 
+        no-underline font-bold text-xs"
       >
         Stats
       </a>
       <a
         href="#sheet"
-        className="text-center hover:bg-[var(--cl-6)] rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 py-1 px-2.5 no-underline"
+        className="text-center active:bg-[var(--cl-6)] hover:bg-[var(--cl-3)] 
+        rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 pt-3 px-1.5 
+        no-underline font-bold text-xs"
       >
         Activity Sheet
       </a>

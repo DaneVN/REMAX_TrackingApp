@@ -10,9 +10,6 @@ export default {
         "cl-4": "#0c2749",
         "cl-5": "#003dc5",
       },
-      borderRadius: {
-        rounded: "10px", // Matches --num-rounded
-      },
     },
     plugins: [],
   },
