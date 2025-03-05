@@ -6,7 +6,7 @@ import Main from "./assets/components/main/Main.jsx";
 
 function App() {
   return (
-    <div className="bg-cl-2 m-0 p-0 box-border font-sans scroll-smooth">
+    <div className="bg-[var(--cl-2)] m-0 p-0 box-border font-sans scroll-smooth">
       <Header />
       <NavBar />
       <Main />

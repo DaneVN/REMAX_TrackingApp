@@ -6,7 +6,7 @@ export default function Header() {
       id="home"
       className="flex justify-between items-center p-2.5 text-white relative z-10 bg-cover bg-[url('./src/assets/images/REMAXBanner.jpg')] bg-[position:18%_20%]"
     >
-      <span className="app-title text-2xl font-bold text-cl-5">
+      <span className="app-title text-2xl font-bold text-[var(--cl-5)]">
         Tracking App
       </span>
       <img

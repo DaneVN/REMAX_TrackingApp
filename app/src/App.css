@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+:root,
+#root,
+#docs-root {
+  --cl-1: #007dc3;
+  --cl-2: #a4d7f4;
+  --cl-3: #aa1120;
+  --cl-4: #0c2749;
+  --cl-5: #003dc5;
+}
