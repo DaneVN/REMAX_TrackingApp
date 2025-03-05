@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "../src/assets/components/Header.jsx";
 import NavBar from "./assets/components/NavBar.jsx";
 import Main from "./assets/components/main/Main.jsx";
+import Footer from "./assets/components/Footer.jsx";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <NavBar />
       <Main />
+      <Footer />
     </>
   );
 }

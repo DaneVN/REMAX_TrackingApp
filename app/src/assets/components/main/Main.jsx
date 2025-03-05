@@ -2,6 +2,7 @@ import React from "react";
 import DueCard from "./DueCard";
 import StatsCard from "./StatsCard";
 import SheetCard from "./SheetCard";
+import GraphCard from "./GraphCard";
 
 export default function Main() {
   return (
@@ -10,9 +11,10 @@ export default function Main() {
     sm:grid-rows-1fr-1fr gap-5 p-5 pt-8 md:text-2xl"
     >
       <DueCard />
+      <SheetCard />
+      <GraphCard />
       <StatsCard />
-      <SheetCard />
-      <SheetCard />
+      {/* Filler */}
       <SheetCard />
     </main>
   );
