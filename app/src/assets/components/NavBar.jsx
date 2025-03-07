@@ -7,8 +7,8 @@ export default function NavBar() {
     border-b-2 border-[var(--cl-1)] sticky top-0 z-20 transition-top duration-300 
     ease-in-out"
     >
-      <div className="px-1.25 bg-[var(--cl-6)] rounded-full w-12 h-12">
-        {/* profile picture */}
+      <div className="h-6 w-6 self-center">
+        <img src="/images/Gear.svg" alt="Settings" />
       </div>
       <a
         href="#home"

@@ -16,18 +16,18 @@ const ActivityTable = () => {
   const dates = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   return (
-    <div className="p-4 bg-cl-1 rounded-[15px] overflow-auto max-h-[60vh] w-full">
+    <div className="p-4 bg-[var(cl-1)] rounded-[15px] overflow-auto max-h-[60vh] w-full">
       <table className="w-max min-w-full border-collapse">
         {/* Header Row with Dates */}
         <thead>
-          <tr className="bg-cl-4 text-cl-2">
-            <th className="p-2 border border-cl-2 sticky top-0 bg-cl-4">
-              Activity / Goal
+          <tr className="bg-[var(cl-4)] text-[var(cl-2)]">
+            <th className="p-2 border border-[var(cl-2)] sticky top-0 bg-[var(cl-4)]">
+              Activity
             </th>
             {dates.map((date) => (
               <th
                 key={date}
-                className="p-2 border border-cl-2 sticky top-0 bg-cl-4"
+                className="p-2 border border-[var(cl-2)] sticky top-0 bg-[var(cl-4)]"
               >
                 {date}
               </th>
@@ -37,12 +37,12 @@ const ActivityTable = () => {
         {/* Body Rows with Activities */}
         <tbody>
           {activities.map((activity, index) => (
-            <tr key={index} className="hover:bg-cl-5">
-              <td className="p-2 border border-cl-2 font-bold">{`${activity.name} (${activity.goal})`}</td>
+            <tr key={index} className="hover:bg-[var(cl-5)]">
+              <td className="p-2 border border-[var(cl-2)] font-bold">{`${activity.name}`}</td>
               {dates.map((date) => (
                 <td
                   key={`${activity.name}-${date}`}
-                  className="p-2 border border-cl-2"
+                  className="p-2 border border-[var(cl-2)]"
                 >
                   {/* Placeholder for data (e.g., completed count) */}0
                 </td>
