@@ -14,8 +14,8 @@ export default function Main() {
       <SheetCard />
       <GraphCard />
       <StatsCard />
-      {/* Filler */}
-      <SheetCard />
+      {/* Filler 
+      <SheetCard />*/}
     </main>
   );
 }
