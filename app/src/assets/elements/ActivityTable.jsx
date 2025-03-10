@@ -5,7 +5,18 @@ const ActivityTable = () => {
   const activities = [
     { name: "Cold Calls", goal: "5" },
     { name: "Thank You Card", goal: "3" },
-    // Add more activities as needed
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
+    { name: "Thank You Card", goal: "3" },
   ];
 
   // Generate dates for the current month
@@ -16,18 +27,18 @@ const ActivityTable = () => {
   const dates = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   return (
-    <div className="py-4 rounded-[15px] overflow-auto max-h-[60vh] w-full">
+    <div className="pb-4 rounded-[15px] overflow-auto max-h-full w-full">
       <table className="w-max min-w-full border-collapse">
         {/* Header Row with Dates */}
         <thead>
           <tr className="bg-[var(--cl-4)] text-[var(--cl-2)] text-[12px]">
-            <th className="text-[12px] p-2 border border-[var(--cl-2)] sticky top-0 bg-[var(--cl-4)]">
+            <th className="text-[1rem] p-2 border border-[var(--cl-2)] sticky top-0 bg-[var(--cl-4)]">
               Activity
             </th>
             {dates.map((date) => (
               <th
                 key={date}
-                className="text-[12px] p-2 border border-[var(--cl-2)] sticky top-0 bg-[var(--cl-4)]"
+                className="text-[1rem] p-2 border border-[var(--cl-2)] sticky top-0 bg-[var(--cl-4)]"
               >
                 {date}
               </th>
@@ -38,11 +49,11 @@ const ActivityTable = () => {
         <tbody>
           {activities.map((activity, index) => (
             <tr key={index} className="hover:bg-[var(--cl-5)]">
-              <td className="text-[12px] p-2 border border-[var(--cl-2)] font-bold">{`${activity.name}`}</td>
+              <td className="text-[1rem] p-2 border border-[var(--cl-2)] font-bold">{`${activity.name}`}</td>
               {dates.map((date) => (
                 <td
                   key={`${activity.name}-${date}`}
-                  className="text-[12px] p-2 border border-[var(--cl-2)]"
+                  className="text-[1rem] p-2 border border-[var(--cl-2)]"
                 >
                   {/* Placeholder for data (e.g., completed count) */}0
                 </td>
