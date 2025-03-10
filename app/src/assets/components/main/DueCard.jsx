@@ -8,11 +8,11 @@ export default function DueCard({ data }) {
   React.useEffect(() => {
     let tempData = [];
     data.forEach((activity) => {
-      for (let i = 0; i < activity.array.length; i++) {
-        if (i == new Date().getDate() && activity.array[i] !== 0) {
+      for (let i = 0; i < activity.goalArray.length; i++) {
+        if (i == new Date().getDate() && activity.goalArray[i] !== 0) {
           tempData.push({
             name: activity.name,
-            goal: activity.array[i],
+            goal: activity.goalArray[i],
           });
         }
       }

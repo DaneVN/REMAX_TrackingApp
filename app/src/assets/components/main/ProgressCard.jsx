@@ -34,7 +34,7 @@ export default function ProgressCard({ data }) {
     ) {
       if (d >= currentMonthStart && d <= currentMonthEnd) {
         let dayOfMonth = d.getDate();
-        sum += activity.array[dayOfMonth - 1];
+        sum += activity.goalArray[dayOfMonth - 1];
       }
     }
     return sum;
@@ -49,7 +49,7 @@ export default function ProgressCard({ data }) {
             <Progress
               activity={activity.name}
               goal={weeklyGoal}
-              complete={10}
+              complete={activity.dailyComplete}
               key={activity.name}
             />
           );

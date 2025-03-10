@@ -13,16 +13,9 @@ export default function Main() {
     initialData = {
       curr: [
         {
-          name: "Cold Calls",
-          array: Array(31).fill(5),
-        },
-        {
-          name: "Thank you cards",
-          array: Array(31).fill(2),
-        },
-        {
-          name: "Social media Post",
-          array: Array(31).fill(2),
+          name: "Add Activity and fill the dates with goals",
+          goalArray: Array(31).fill(1),
+          dailyCompleted: 0,
         },
       ],
       prev: [],
@@ -43,16 +36,15 @@ export default function Main() {
   return (
     <main
       id="home"
-      className="flex flex-col sm:grid sm:grid-cols-3 
-    sm:grid-rows-1fr-1fr gap-5 p-5 pt-8 md:text-2xl"
+      className="flex flex-col sm:grid sm:grid-cols-3 sm:grid-rows-1fr-1fr gap-5 p-5 pt-8 md:text-2xl"
     >
       <DueCard data={state.curr} /*setData={setinitialData} */ />
-      <div id="sheet" className="mb-[5vh] sm:hidden"></div>
+      <div id="progress" className="mb-[5vh] sm:hidden"></div>
+      <ProgressCard data={state.curr} /*setData={setinitialData} */ />
+      <div id="sheet" className="mb-[5vh]"></div>
       <SheetCard data={state.curr} /*setData={setinitialData} */ />
       <div id="graph" className="mb-[5vh]"></div>
       <GraphCard data={state} /*setData={setinitialData} */ />
-      <div id="progress" className="mb-[5vh]"></div>
-      <ProgressCard data={state.curr} /*setData={setinitialData} */ />
     </main>
   );
 }
