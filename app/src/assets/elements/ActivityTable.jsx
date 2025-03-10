@@ -1,24 +1,6 @@
 import React from "react";
 
-const ActivityTable = () => {
-  /* Sample DELETE LATER */
-  const activities = [
-    { name: "Cold Calls", goal: "5" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-    { name: "Thank You Card", goal: "3" },
-  ];
-
+const ActivityTable = ({ data }) => {
   // Generate dates for the current month
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -47,15 +29,17 @@ const ActivityTable = () => {
         </thead>
         {/* Body Rows with Activities */}
         <tbody>
-          {activities.map((activity, index) => (
+          {console.log(data)}
+
+          {data.map((activity, index) => (
             <tr key={index} className="hover:bg-[var(--cl-5)]">
               <td className="text-[1rem] p-2 border border-[var(--cl-2)] font-bold">{`${activity.name}`}</td>
-              {dates.map((date) => (
+              {activity.array.map((goal, index) => (
                 <td
-                  key={`${activity.name}-${date}`}
+                  key={`${activity.name}-${index}`}
                   className="text-[1rem] p-2 border border-[var(--cl-2)]"
                 >
-                  {/* Placeholder for data (e.g., completed count) */}0
+                  {goal}
                 </td>
               ))}
             </tr>
