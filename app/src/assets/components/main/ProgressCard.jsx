@@ -1,17 +1,59 @@
 import React from "react";
 import Progress from "../../elements/Progress";
 
-export default function ProgressCard() {
+export default function ProgressCard({ data }) {
+  let currWeek = new Date();
+
+  function getStartOfWeek(date) {
+    let startOfWeek = new Date(date);
+    startOfWeek.setDate(date.getDate() - (date.getDay() - 1));
+    return startOfWeek;
+  }
+
+  function calculateWeeklyGoal(activity) {
+    let startOfWeek = getStartOfWeek(currWeek);
+    let endOfWeek = new Date(startOfWeek);
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+    let currentMonthStart = new Date(
+      currWeek.getFullYear(),
+      currWeek.getMonth(),
+      1
+    );
+    let currentMonthEnd = new Date(
+      currWeek.getFullYear(),
+      currWeek.getMonth() + 1,
+      0
+    );
+
+    let sum = 0;
+    for (
+      let d = new Date(startOfWeek);
+      d <= endOfWeek;
+      d.setDate(d.getDate() + 1)
+    ) {
+      if (d >= currentMonthStart && d <= currentMonthEnd) {
+        let dayOfMonth = d.getDate();
+        sum += activity.array[dayOfMonth - 1];
+      }
+    }
+    return sum;
+  }
+
   return (
     <section className="min-h-[90vh] bg-[var(--cl-1)] p-2.5 rounded-[15px] sm:col-start-2 sm:col-span-2">
       <div className="flex flex-wrap py-3 gap-3 justify-evenly">
-        {/* 
-            Add the display data as props
-            loop through the array of activities and call a progress card for every
-            activity and goal set per week
-        */}
-        <Progress activity="Cold calls" goal="12" complete="10" />
-        <Progress activity="Thank you card" goal="7" complete="5" />
+        {data.map((activity) => {
+          let weeklyGoal = calculateWeeklyGoal(activity);
+          return (
+            <Progress
+              activity={activity.name}
+              goal={weeklyGoal}
+              complete={10}
+              key={activity.name}
+            />
+          );
+        })}
       </div>
     </section>
   );

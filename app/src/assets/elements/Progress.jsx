@@ -4,7 +4,7 @@ export default function ProgressCard({ activity, goal, complete }) {
   const progressPercent = (complete / goal) * 100;
 
   return (
-    <div className="h-[60vw] w-[40vw] rounded-[15px] flex flex-col justify-center items-center p-0">
+    <div className="w-[40%] -rounded-[15px] flex flex-col justify-center items-center p-0">
       <h4 className="justify-self-center self-center text-[var(--cl-2)]">
         {activity}
       </h4>

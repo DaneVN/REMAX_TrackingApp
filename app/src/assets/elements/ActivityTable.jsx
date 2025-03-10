@@ -29,8 +29,6 @@ const ActivityTable = ({ data }) => {
         </thead>
         {/* Body Rows with Activities */}
         <tbody>
-          {console.log(data)}
-
           {data.map((activity, index) => (
             <tr key={index} className="hover:bg-[var(--cl-5)]">
               <td className="text-[1rem] p-2 border border-[var(--cl-2)] font-bold">{`${activity.name}`}</td>
