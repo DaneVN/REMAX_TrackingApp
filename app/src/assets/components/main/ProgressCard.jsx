@@ -49,7 +49,7 @@ export default function ProgressCard({ data }) {
             <Progress
               activity={activity.name}
               goal={weeklyGoal}
-              complete={activity.dailyComplete}
+              complete={activity.dailyCompleted}
               key={activity.name}
             />
           );

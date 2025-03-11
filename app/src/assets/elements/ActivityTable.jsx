@@ -1,17 +1,12 @@
 import React from "react";
-import ActivityModal from "./ActivityModal";
 
-const ActivityTable = ({ data }) => {
+const ActivityTable = ({ data, openModalFn }) => {
   // Generate dates for the current month
   const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth();
+  const year = currentDate.getUTCFullYear();
+  const month = currentDate.getUTCMonth();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const dates = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-
-  function onClick(activityData) {
-    return <ActivityModal activity={activityData} />;
-  }
 
   return (
     <div className="pb-4 rounded-[15px] overflow-auto max-h-full w-full">
@@ -38,7 +33,7 @@ const ActivityTable = ({ data }) => {
             <tr
               key={index}
               className="hover:bg-[var(--cl-5)] active:bg-[var(--cl-6)]"
-              onClick={() => onClick(activity)}
+              onClick={() => openModalFn(activity)}
             >
               <td className="text-[1rem] p-2 border border-[var(--cl-2)] font-bold">{`${activity.name}`}</td>
               {activity.goalArray.map((goal, index) => (
