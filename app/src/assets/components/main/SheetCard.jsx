@@ -7,13 +7,28 @@ export default function SheetCard({ data, updateData }) {
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [selectedActivity, setSelectedActivity] = React.useState(null);
 
+  // Reset dailyCompleted at midnight
+  React.useEffect(() => {
+    const now = new Date();
+    const lastReset = localStorage.getItem("lastReset")
+      ? new Date(localStorage.getItem("lastReset"))
+      : null;
+    if (!lastReset || now.getDate() !== lastReset.getDate()) {
+      const updatedData = data.map((activity) => ({
+        ...activity,
+        dailyCompleted: 0,
+      }));
+      updateData(updatedData);
+      localStorage.setItem("lastReset", now.toISOString());
+    }
+  }, [data, updateData]);
+
   function openModal(activity) {
     if (activity) {
       setSelectedActivity(activity);
     } else {
-      // Dud data
       setSelectedActivity({
-        name: "New Task Name",
+        name: "",
         goalArray: Array(31).fill(0),
         dailyCompleted: 0,
       });
@@ -26,8 +41,7 @@ export default function SheetCard({ data, updateData }) {
   }
 
   function handleSaveChanges(updatedActivity) {
-    //check if activity exists in state yes ? update existing else create
-    if (!data.find((a) => a.name == updatedActivity.name)) {
+    if (!data.find((a) => a.name === updatedActivity.name)) {
       const newData = [...data, updatedActivity];
       updateData(newData);
     } else {
@@ -44,6 +58,18 @@ export default function SheetCard({ data, updateData }) {
     updateData(newData);
     setModalOpen(false);
   }
+
+  function handleActivityInc() {
+    if (selectedActivity) {
+      const newData = data.map((activity) =>
+        activity === selectedActivity
+          ? { ...activity, dailyCompleted: activity.dailyCompleted + 1 }
+          : activity
+      );
+      updateData(newData);
+    }
+  }
+
   return (
     <section className="h-[90vh] bg-[var(--cl-1)] p-2.5 rounded-[15px] sm:col-start-2 sm:col-span-2">
       <div className="bg-[var(--cl-2)] h-5/6 max-w-full m-1 rounded-[15px] mb-4">
@@ -55,6 +81,7 @@ export default function SheetCard({ data, updateData }) {
         closeModal={closeModal}
         onSaveChanges={handleSaveChanges}
         onDeleteActivity={handleDeleteActivity}
+        onActivityInc={handleActivityInc}
       />
       <button
         onClick={() => openModal()}

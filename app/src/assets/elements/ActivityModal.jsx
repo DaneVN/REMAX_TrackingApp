@@ -7,6 +7,7 @@ export default function ActivityModal({
   closeModal,
   onSaveChanges,
   onDeleteActivity,
+  onActivityInc,
 }) {
   if (!isOpen) return null;
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -91,15 +92,21 @@ export default function ActivityModal({
         <div className="flex justify-evenly mt-4">
           <button
             onClick={() => onSaveChanges(updatedActivity)}
-            className="bg-[var(--cl-2)] text-[var(--cl-1)] p-2 rounded"
+            className="bg-[var(--cl-2)] text-[var(--cl-1)] p-1.5 rounded"
           >
             Save Changes
           </button>
           <button
             onClick={onDeleteActivity}
-            className="bg-[var(--cl-2)] text-[var(--cl-1)] p-2 rounded"
+            className="bg-[var(--cl-2)] text-[var(--cl-1)] p-1.5 rounded"
           >
             Delete Activity
+          </button>
+          <button
+            onClick={onActivityInc}
+            className="bg-[var(--cl-2)] text-[var(--cl-1)] p-1.5 rounded"
+          >
+            Capture
           </button>
         </div>
       </div>
