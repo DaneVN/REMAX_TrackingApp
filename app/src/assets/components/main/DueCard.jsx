@@ -9,10 +9,10 @@ export default function DueCard({ data }) {
     let tempData = [];
     data.forEach((activity) => {
       for (let i = 0; i < activity.goalArray.length; i++) {
-        if (i == new Date().getDate() && activity.goalArray[i] !== 0) {
+        if (i == new Date().getDate() && activity.goalArray[i - 1] !== 0) {
           tempData.push({
             name: activity.name,
-            goal: activity.goalArray[i],
+            goal: activity.goalArray[i - 1],
           });
         }
       }
