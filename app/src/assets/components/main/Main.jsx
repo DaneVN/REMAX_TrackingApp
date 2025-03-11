@@ -3,7 +3,6 @@ import DueCard from "./DueCard";
 import ProgressCard from "./ProgressCard";
 import SheetCard from "./SheetCard";
 import GraphCard from "./GraphCard";
-import ActivityModal from "../../elements/ActivityModal";
 
 export default function Main() {
   // Initialize state from local storage or default data
@@ -14,12 +13,16 @@ export default function Main() {
     initialData = {
       curr: [
         {
-          name: "Add Activity and fill the dates with goals",
-          goalArray: Array(31).fill(1),
+          name: "New Activity",
+          goalArray: Array(31).fill(0),
           dailyCompleted: 0,
         },
       ],
-      prev: [],
+      prev: [
+        //Filler Info
+        [15, 20, 40],
+        ["Thanks cards", "Social Media posts", "Cold Calls"],
+      ],
     };
     localStorage.setItem("trackData", JSON.stringify(initialData));
   }

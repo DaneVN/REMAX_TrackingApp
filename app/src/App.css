@@ -10,3 +10,11 @@
   --cl-5: #003dc5;
   --cl-6: #8b7700;
 }
+
+/* Target y-axis tick labels for wrapping */
+.plot-container .yaxislayer .ytick text {
+  white-space: normal !important;
+  text-wrap: wrap !important;
+  max-width: 1rem; /* Adjust based on your layout needs */
+  line-height: 0.5rem; /* Improve readability */
+}
