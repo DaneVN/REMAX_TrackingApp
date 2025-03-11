@@ -14,7 +14,7 @@ export default function Main() {
       curr: [
         {
           name: "New Activity",
-          goalArray: Array(31).fill(0),
+          goalArray: Array(31).fill(1),
           dailyCompleted: 0,
         },
       ],
