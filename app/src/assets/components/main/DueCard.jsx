@@ -13,6 +13,7 @@ export default function DueCard({ data }) {
           tempData.push({
             name: activity.name,
             goal: activity.goalArray[i - 1],
+            completed: activity.dailyCompleted,
           });
         }
       }
@@ -29,7 +30,7 @@ export default function DueCard({ data }) {
       <div className="bg-[var(--cl-1)] h-5/6 w-full rounded-[15px]">
         {dueTodayFromData.map((activityDue) => (
           <p key={activityDue.name} className="text-white">
-            {activityDue.name}: {activityDue.goal}
+            {activityDue.name}: {activityDue.goal - activityDue.completed}
           </p>
         ))}
       </div>
