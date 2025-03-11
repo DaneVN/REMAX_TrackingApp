@@ -83,12 +83,11 @@ export default function SheetCard({ data, updateData }) {
         onDeleteActivity={handleDeleteActivity}
         onActivityInc={handleActivityInc}
       />
-      <button
-        onClick={() => openModal()}
+      <Button
+        onClickFn={() => openModal()}
         className="bg-[var(--cl-2)] text-[var(--cl-1)] p-2 rounded mt-2 w-full sm:w-auto"
-      >
-        Add New Activity
-      </button>
+        caption="Add New Activity"
+      ></Button>
     </section>
   );
 }

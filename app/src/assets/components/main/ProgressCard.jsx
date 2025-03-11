@@ -41,7 +41,13 @@ export default function ProgressCard({ data }) {
   }
 
   return (
-    <section className="min-h-[90vh] bg-[var(--cl-1)] p-2.5 rounded-[15px] sm:col-start-2 sm:col-span-2">
+    <section
+      id="progress"
+      className="min-h-[90vh] bg-[var(--cl-1)] p-2.5 rounded-[15px] sm:col-start-2 sm:col-span-2"
+    >
+      <h2 className="justify-self-center underline font-bold text-3xl text-[var(--cl-2)]">
+        Progress:
+      </h2>
       <div className="flex flex-wrap py-3 gap-3 justify-evenly">
         {data.map((activity) => {
           let weeklyGoal = calculateWeeklyGoal(activity);
