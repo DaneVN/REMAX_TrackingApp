@@ -31,7 +31,10 @@ export default function DueCard({ data }) {
         {dueTodayFromData.map((activityDue) => (
           <p key={activityDue.name} className="text-white">
             <span className="italic">{activityDue.name}</span> left for today:{" "}
-            {activityDue.goal - activityDue.completed}
+            {activityDue.goal - activityDue.completed > 0
+              ? activityDue.goal - activityDue.completed
+              : Math.abs(activityDue.goal - activityDue.completed) +
+                " over goal <3"}
           </p>
         ))}
       </div>

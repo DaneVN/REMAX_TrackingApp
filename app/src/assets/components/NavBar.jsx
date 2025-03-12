@@ -1,6 +1,23 @@
 import React from "react";
 
 export default function NavBar() {
+  const resetData = () => {
+    let isReset = window.confirm("Are you sure you want to reset ALL data?");
+    if (isReset) {
+      let initialData = {
+        curr: [
+          {
+            name: "New Activity",
+            goalArray: Array(31).fill(1),
+            dailyCompleted: 0,
+          },
+        ],
+        prev: [[], []],
+      };
+      localStorage.setItem("trackData", JSON.stringify(initialData));
+    } else return;
+  };
+
   return (
     <nav
       className="min-h-[10vh] bg-[var(--cl-2)] flex justify-around px-1.25 pt-1.25 text-[var(--cl-4)] 
@@ -8,7 +25,9 @@ export default function NavBar() {
     ease-in-out"
     >
       <div className="h-6 w-6 self-center">
-        <img src="/images/Gear.svg" alt="Settings" />
+        <button onClick={resetData}>
+          <img src="/images/Trash.svg" alt="Settings" />
+        </button>
       </div>
       <a
         href="#home"
