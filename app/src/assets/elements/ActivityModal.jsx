@@ -32,11 +32,7 @@ export default function ActivityModal({
           <h3 className="text-[var(--cl-2)] text-[1.5rem] sm:text-[2rem]">
             Edit Activity
           </h3>
-          <Button
-            onClickFn={closeModal}
-            className="text-[var(--cl-2)] text-[1.5rem] sm:text-[2rem]"
-            caption="x"
-          ></Button>
+          <Button onClickFn={closeModal} caption="x"></Button>
         </div>
         <label className="block mb-4">
           <span className="text-[var(--cl-2)]">Activity Name:</span>
@@ -91,19 +87,13 @@ export default function ActivityModal({
         <div className="flex justify-evenly mt-4">
           <Button
             onClickFn={() => onSaveChanges(updatedActivity)}
-            className="bg-[var(--cl-2)] text-[var(--cl-1)] p-1.5 rounded"
             caption="Save Changes"
           ></Button>
           <Button
             onClickFn={onDeleteActivity}
-            className="bg-[var(--cl-2)] text-[var(--cl-1)] p-1.5 rounded"
             caption="Delete Activity"
           ></Button>
-          <Button
-            onClickFn={onActivityInc}
-            className="bg-[var(--cl-2)] text-[var(--cl-1)] p-1.5 rounded"
-            caption="Capture"
-          ></Button>
+          <Button onClickFn={onActivityInc} caption="Capture"></Button>
         </div>
       </div>
     </div>

@@ -18,11 +18,7 @@ export default function Main() {
           dailyCompleted: 0,
         },
       ],
-      prev: [
-        //Filler Info
-        [15, 20, 40],
-        ["Thanks cards", "Social Media posts", "Cold Calls"],
-      ],
+      prev: [[], []],
     };
     localStorage.setItem("trackData", JSON.stringify(initialData));
   }

@@ -13,13 +13,19 @@ export default function SheetCard({ data, updateData }) {
     const lastReset = localStorage.getItem("lastReset")
       ? new Date(localStorage.getItem("lastReset"))
       : null;
-    if (!lastReset || now.getDate() !== lastReset.getDate()) {
+
+    if (lastReset == null || now.getTime() - lastReset.getTime() > 86400000) {
+      //if the difference between the lastReset and current time is more than 24 hrs
       const updatedData = data.map((activity) => ({
         ...activity,
         dailyCompleted: 0,
       }));
       updateData(updatedData);
-      localStorage.setItem("lastReset", now.toISOString());
+      localStorage.setItem(
+        "lastReset",
+        //Set to midnight of the current date so that the lastReset value is accurate next time
+        now.toISOString().split("T")[0] + "T00:00:00.000Z"
+      );
     }
   }, [data, updateData]);
 
@@ -67,12 +73,16 @@ export default function SheetCard({ data, updateData }) {
           : activity
       );
       updateData(newData);
+      setModalOpen(false);
     }
   }
 
   return (
-    <section className="h-[90vh] bg-[var(--cl-1)] p-2.5 rounded-[15px] sm:col-start-2 sm:col-span-2">
-      <div className="bg-[var(--cl-2)] h-5/6 max-w-full m-1 rounded-[15px] mb-4">
+    <section className="h-[90vh] bg-[var(--cl-1)] p-2.5 flex flex-col items-center justify-evenly rounded-[15px] sm:col-start-2 sm:col-span-2 ">
+      <h2 className="justify-self-center underline font-bold text-3xl text-[var(--cl-2)] my-5">
+        Activity sheet:
+      </h2>
+      <div className="bg-[var(--cl-2)] h-9/12 max-w-full m-1 rounded-[15px] mb-4">
         <ActivityTable data={data} openModalFn={openModal} />
       </div>
       <ActivityModal
@@ -83,11 +93,7 @@ export default function SheetCard({ data, updateData }) {
         onDeleteActivity={handleDeleteActivity}
         onActivityInc={handleActivityInc}
       />
-      <Button
-        onClickFn={() => openModal()}
-        className="bg-[var(--cl-2)] text-[var(--cl-1)] p-2 rounded mt-2 w-full sm:w-auto"
-        caption="Add New Activity"
-      ></Button>
+      <Button onClickFn={() => openModal()} caption="Add New Activity"></Button>
     </section>
   );
 }
