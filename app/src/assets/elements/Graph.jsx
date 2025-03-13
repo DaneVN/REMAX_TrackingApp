@@ -10,7 +10,7 @@ const Graph = ({ data }) => {
     dataCurr[1].push(activity.name);
   });
 
-  if (dataPrev[0].length) {
+  try {
     return (
       <Plot
         data={[
@@ -48,7 +48,7 @@ const Graph = ({ data }) => {
         useResizeHandler={true}
       />
     );
-  } else {
+  } catch {
     return (
       <Plot
         data={[
