@@ -5,14 +5,7 @@ export default function NavBar() {
     let isReset = window.confirm("Are you sure you want to reset ALL data?");
     if (isReset) {
       let initialData = {
-        curr: [
-          //Filler content DELETE LATER
-          {
-            name: "New Activity",
-            goalArray: Array(31).fill(1),
-            dailyCompleted: 0,
-          },
-        ],
+        curr: [],
         prev: [[], []],
         progress: [],
       };

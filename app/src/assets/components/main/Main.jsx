@@ -10,28 +10,16 @@ export default function Main() {
     initialData = JSON.parse(localStorage.getItem("trackData"));
   } else {
     initialData = {
-      curr: [
-        {
-          name: "Social Media",
-          goalArray: Array(31).fill(1),
-          dailyCompleted: 0,
-        },
-        { name: "Validation", goalArray: Array(31).fill(1), dailyCompleted: 0 },
-        { name: "Sale", goalArray: Array(31).fill(0), dailyCompleted: 0 },
-      ],
+      curr: [],
       prev: [[], []],
-      progress: [
-        { name: "Social Media", complete: 0 },
-        { name: "Validation", complete: 0 },
-        { name: "Sale", complete: 0 },
-      ],
+      progress: [],
     };
     localStorage.setItem("trackData", JSON.stringify(initialData));
   }
 
   const [isLoading, setIsLoading] = React.useState(true);
   const [state, setState] = React.useState(initialData);
-  const hasCheckedMonth = React.useRef(false); // Track if month check has run
+  const hasCheckedMonth = React.useRef(false); // Track if month check has run out
 
   // Function to check and handle month change
   const checkMonthChange = () => {
