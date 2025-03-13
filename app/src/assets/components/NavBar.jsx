@@ -6,6 +6,7 @@ export default function NavBar() {
     if (isReset) {
       let initialData = {
         curr: [
+          //Filler content DELETE LATER
           {
             name: "New Activity",
             goalArray: Array(31).fill(1),
@@ -13,6 +14,7 @@ export default function NavBar() {
           },
         ],
         prev: [[], []],
+        progress: [],
       };
       localStorage.setItem("trackData", JSON.stringify(initialData));
     } else return;
@@ -26,7 +28,7 @@ export default function NavBar() {
     >
       <div className="h-6 w-6 self-center">
         <button onClick={resetData}>
-          <img src="/images/Trash.svg" alt="Settings" />
+          <img src="images/Trash.svg" alt="Settings" />
         </button>
       </div>
       <a

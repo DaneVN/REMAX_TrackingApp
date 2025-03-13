@@ -3,7 +3,12 @@ import ActivityTable from "../../elements/ActivityTable";
 import ActivityModal from "../../elements/ActivityModal";
 import Button from "../../elements/Button";
 
-export default function SheetCard({ data, updateData }) {
+export default function SheetCard({
+  progress,
+  data,
+  updateCurr,
+  updateProgress,
+}) {
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [selectedActivity, setSelectedActivity] = React.useState(null);
 
@@ -13,21 +18,36 @@ export default function SheetCard({ data, updateData }) {
     const lastReset = localStorage.getItem("lastReset")
       ? new Date(localStorage.getItem("lastReset"))
       : null;
+    let updatedProgress = progress;
 
     if (lastReset == null || now.getTime() - lastReset.getTime() > 86400000) {
       //if the difference between the lastReset and current time is more than 24 hrs
-      const updatedData = data.map((activity) => ({
-        ...activity,
-        dailyCompleted: 0,
-      }));
-      updateData(updatedData);
+      console.log("data: ", data);
+      const updatedData = data.map((activity) => {
+        progress.map((a) => {
+          if (activity.name == a.name) a.complete += activity.dailyCompleted;
+          else
+            updatedProgress.push({
+              name: activity.name,
+              complete: activity.dailyCompleted,
+            });
+          console.log("progress added: ", progress);
+        });
+        return {
+          ...activity,
+          dailyCompleted: 0,
+        };
+      });
+      console.log("updated data: ", updatedData);
+      updateCurr(updatedData);
+      updateProgress(progress);
       localStorage.setItem(
         "lastReset",
         //Set to midnight of the current date so that the lastReset value is accurate next time
         now.toISOString().split("T")[0] + "T00:00:00.000Z"
       );
     }
-  }, [data, updateData]);
+  }, [data, updateCurr]);
 
   function openModal(activity) {
     if (activity) {
@@ -49,19 +69,19 @@ export default function SheetCard({ data, updateData }) {
   function handleSaveChanges(updatedActivity) {
     if (!data.find((a) => a.name === updatedActivity.name)) {
       const newData = [...data, updatedActivity];
-      updateData(newData);
+      updateCurr(newData);
     } else {
       const newData = data.map((activity) =>
         activity === selectedActivity ? updatedActivity : activity
       );
-      updateData(newData);
+      updateCurr(newData);
     }
     setModalOpen(false);
   }
 
   function handleDeleteActivity() {
     const newData = data.filter((activity) => activity !== selectedActivity);
-    updateData(newData);
+    updateCurr(newData);
     setModalOpen(false);
   }
 
@@ -72,7 +92,7 @@ export default function SheetCard({ data, updateData }) {
           ? { ...activity, dailyCompleted: activity.dailyCompleted + 1 }
           : activity
       );
-      updateData(newData);
+      updateCurr(newData);
       setModalOpen(false);
     }
   }
