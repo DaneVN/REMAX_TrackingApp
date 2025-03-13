@@ -5,7 +5,6 @@ import SheetCard from "./SheetCard";
 import GraphCard from "./GraphCard";
 
 export default function Main() {
-  // Initialize state from local storage or default data
   let initialData;
   if (localStorage.getItem("trackData")) {
     initialData = JSON.parse(localStorage.getItem("trackData"));
@@ -17,23 +16,14 @@ export default function Main() {
           goalArray: Array(31).fill(1),
           dailyCompleted: 0,
         },
-        {
-          name: "Validation",
-          goalArray: Array(31).fill(1),
-          dailyCompleted: 0,
-        },
-        {
-          name: "Sale",
-          goalArray: Array(31).fill(0),
-          dailyCompleted: 0,
-        },
+        { name: "Validation", goalArray: Array(31).fill(1), dailyCompleted: 0 },
+        { name: "Sale", goalArray: Array(31).fill(0), dailyCompleted: 0 },
       ],
-      //needs to be two arrays for easier usage in the Graph element.
       prev: [[], []],
       progress: [
-        //filler content DELETE LATER
-        { name: "Cold Calls", complete: 20 },
-        { name: "Social Media", complete: 10 },
+        { name: "Social Media", complete: 0 },
+        { name: "Validation", complete: 0 },
+        { name: "Sale", complete: 0 },
       ],
     };
     localStorage.setItem("trackData", JSON.stringify(initialData));
@@ -41,58 +31,66 @@ export default function Main() {
 
   const [isLoading, setIsLoading] = React.useState(true);
   const [state, setState] = React.useState(initialData);
+  const hasCheckedMonth = React.useRef(false); // Track if month check has run
 
-  // Save state to local storage whenever it changes
+  // Function to check and handle month change
+  const checkMonthChange = () => {
+    const now = new Date();
+    const lastLogin = localStorage.getItem("lastLogin")
+      ? new Date(localStorage.getItem("lastLogin"))
+      : null;
+    const currentMonth = now.getMonth();
+    const lastMonth = lastLogin ? lastLogin.getMonth() : currentMonth;
+
+    if (lastLogin && currentMonth !== lastMonth && !hasCheckedMonth.current) {
+      // New month detected
+      const newState = {
+        ...state,
+        prev: [
+          state.progress.map((p) => p.complete),
+          state.progress.map((p) => p.name),
+        ],
+        progress: state.curr.map((activity) => ({
+          name: activity.name,
+          complete: 0,
+        })),
+      };
+      setState(newState);
+      localStorage.setItem("trackData", JSON.stringify(newState));
+      localStorage.setItem("lastLogin", now.toISOString());
+      hasCheckedMonth.current = true; // Prevent re-running
+    } else {
+      localStorage.setItem("lastLogin", now.toISOString()); // Update lastLogin if no month change
+    }
+  };
+
   React.useEffect(() => {
-    try {
-      setIsLoading(true);
-      const currentDate = new Date();
-      const daysInMonth = new Date(
-        currentDate.getUTCFullYear(),
-        currentDate.getUTCMonth() + 1,
-        0
-      ).getDate();
+    setIsLoading(true);
+    checkMonthChange();
+    setIsLoading(false);
+  }, []); // Empty dependency array = runs once on mount
 
+  // Save state to localStorage on change, but not month check
+  React.useEffect(() => {
+    if (hasCheckedMonth.current) {
+      // Only save after initial mount to avoid overwriting month reset
       localStorage.setItem("trackData", JSON.stringify(state));
-      // maybe make use of the dates to determine if the next month has been reached?
-      // e.g) if the current dayOfMonth is less that the last login date, then the next month has been reached.
-      /* localStorage.setItem("lastLogin", new Date().toISOString());*/
-
-      if (currentDate.getDate() !== daysInMonth) {
-        let tempData = {
-          curr: [...state.curr],
-          prev: [[], []],
-          progress: [...state.progress],
-        };
-
-        state.progress.map((a) => {
-          //Swap the temp prev data with the corresponding state progress data (or add new temp data)
-          //and reset the state progress data to complete = 0
-          try {
-            tempData.prev[0].push(a.complete);
-            tempData.prev[1].push(a.name);
-          } catch (e) {
-            console.error(e);
-          }
-          a.complete = 0;
-        });
-        localStorage.setItem("trackData", JSON.stringify(tempData));
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
     }
   }, [state]);
 
-  // Function to update curr activities
-  const updateCurr = (n) => {
-    setState({ ...state, curr: n });
-  };
-  // Function to update curr activities
-  const updateProgress = (n) => {
-    setState({ ...state, progress: n });
-  };
+  const updateCurr = (n) =>
+    setState((prevState) => {
+      let newState = { ...prevState, curr: n };
+      localStorage.setItem("trackData", JSON.stringify(newState));
+      return newState;
+    });
+  const updateProgress = (n) =>
+    setState((prevState) => {
+      let newState = { ...prevState, progress: n };
+      localStorage.setItem("trackData", JSON.stringify(newState));
+      return newState;
+    });
+
   if (!isLoading) {
     return (
       <main
@@ -103,7 +101,6 @@ export default function Main() {
         <div id="progress" className="mb-[5vh] sm:hidden"></div>
         <ProgressCard data={state.curr} />
         <div id="sheet" className="mb-[5vh]"></div>
-        {console.log("state.progress main: ", state.progress)}
         <SheetCard
           progress={state.progress}
           data={state.curr}

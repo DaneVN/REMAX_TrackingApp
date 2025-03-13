@@ -18,32 +18,15 @@ export default function SheetCard({
     const lastReset = localStorage.getItem("lastReset")
       ? new Date(localStorage.getItem("lastReset"))
       : null;
-    let updatedProgress = progress;
 
-    if (lastReset == null || now.getTime() - lastReset.getTime() > 86400000) {
-      //if the difference between the lastReset and current time is more than 24 hrs
-      console.log("data: ", data);
-      const updatedData = data.map((activity) => {
-        progress.map((a) => {
-          if (activity.name == a.name) a.complete += activity.dailyCompleted;
-          else
-            updatedProgress.push({
-              name: activity.name,
-              complete: activity.dailyCompleted,
-            });
-          console.log("progress added: ", progress);
-        });
-        return {
-          ...activity,
-          dailyCompleted: 0,
-        };
-      });
-      console.log("updated data: ", updatedData);
-      updateCurr(updatedData);
-      updateProgress(progress);
+    if (!lastReset || now.getTime() - lastReset.getTime() >= 86400000) {
+      const updatedCurr = data.map((activity) => ({
+        ...activity,
+        dailyCompleted: 0,
+      }));
+      updateCurr(updatedCurr);
       localStorage.setItem(
         "lastReset",
-        //Set to midnight of the current date so that the lastReset value is accurate next time
         now.toISOString().split("T")[0] + "T00:00:00.000Z"
       );
     }
@@ -67,33 +50,56 @@ export default function SheetCard({
   }
 
   function handleSaveChanges(updatedActivity) {
+    // Only update curr, not progress
+    let newCurr;
     if (!data.find((a) => a.name === updatedActivity.name)) {
-      const newData = [...data, updatedActivity];
-      updateCurr(newData);
+      newCurr = [...data, updatedActivity];
     } else {
-      const newData = data.map((activity) =>
+      newCurr = data.map((activity) =>
         activity === selectedActivity ? updatedActivity : activity
       );
-      updateCurr(newData);
     }
+    updateCurr(newCurr);
     setModalOpen(false);
   }
 
   function handleDeleteActivity() {
-    const newData = data.filter((activity) => activity !== selectedActivity);
-    updateCurr(newData);
+    const newCurr = data.filter((activity) => activity !== selectedActivity);
+    const newProgress = progress.filter(
+      (p) => p.name !== selectedActivity.name
+    );
+    updateCurr(newCurr);
+    updateProgress(newProgress);
     setModalOpen(false);
   }
 
   function handleActivityInc() {
     if (selectedActivity) {
-      const newData = data.map((activity) =>
+      // Increment dailyCompleted
+      const newCurr = data.map((activity) =>
         activity === selectedActivity
           ? { ...activity, dailyCompleted: activity.dailyCompleted + 1 }
           : activity
       );
-      updateCurr(newData);
-      setModalOpen(false);
+
+      // Update progress by adding 1 to the corresponding activity's complete
+      const newProgress = progress.map((p) =>
+        p.name === selectedActivity.name
+          ? { ...p, complete: p.complete + 1 }
+          : p
+      );
+
+      if (!newProgress.find((p) => p.name === selectedActivity.name)) {
+        newProgress.push({ name: selectedActivity.name, complete: 1 });
+      }
+
+      updateCurr(newCurr);
+
+      updateProgress(newProgress);
+      // Do not close modal here, let user keep it open if desired
+      setSelectedActivity(
+        newCurr.find((a) => a.name === selectedActivity.name)
+      ); // Update selectedActivity
     }
   }
 
