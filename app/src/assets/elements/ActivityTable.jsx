@@ -9,12 +9,12 @@ const ActivityTable = ({ data, openModalFn }) => {
   const dates = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   return (
-    <div className="pb-4 rounded-[15px] overflow-auto max-h-full w-full">
+    <div className="pb-4 rounded-[15px] overflow-x-auto max-h-full w-full">
       <table className="w-max min-w-full border-collapse">
         {/* Header Row with Dates */}
         <thead>
           <tr className="bg-[var(--cl-4)] text-[var(--cl-2)] text-[12px]">
-            <th className="text-[1rem] p-2 border border-[var(--cl-2)] sticky top-0 bg-[var(--cl-4)]">
+            <th className="text-[1rem] p-2 border border-[var(--cl-2)] sticky left-0 top-0 bg-[var(--cl-4)] z-10 whitespace-normal break-words max-w-[150px]">
               Activity
             </th>
             {dates.map((date) => (
@@ -35,7 +35,9 @@ const ActivityTable = ({ data, openModalFn }) => {
               className="hover:bg-[var(--cl-5)] active:bg-[var(--cl-6)]"
               onClick={() => openModalFn(activity)}
             >
-              <td className="text-[1rem] p-2 border border-[var(--cl-2)] font-bold">{`${activity.name}`}</td>
+              <td className="text-[1rem] p-2 border border-[var(--cl-2)] font-bold sticky left-0 bg-[var(--cl-1)] z-10 whitespace-normal break-words max-w-[150px]">
+                {activity.name}
+              </td>
               {activity.goalArray.map((goal, index) => (
                 <td
                   key={`${activity.name}-${index}`}

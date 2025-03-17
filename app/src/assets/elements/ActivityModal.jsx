@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import Button from "./Button";
 
@@ -10,19 +11,54 @@ export default function ActivityModal({
   onActivityInc,
 }) {
   if (!isOpen) return null;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [updatedActivity, setUpdatedActivity] = React.useState({ ...activity });
 
-  // Function to handle input changes for goalArray
+  // Predefined activity options for a real estate context
+  const activityOptions = [
+    "Cold Call",
+    "Client Call",
+    "Pop-By",
+    "Add to Database",
+    "Networking Event",
+    "Social Media Post",
+    "Hand Written Notes",
+    "Thank you cards",
+    "CMA",
+    "Listing",
+    "Sale",
+    "Custom", // Option for custom input
+  ];
+
+  // State for the activity, including dropdown selection and custom name
+  const [updatedActivity, setUpdatedActivity] = React.useState({ ...activity });
+  const [selectedOption, setSelectedOption] = React.useState(
+    activityOptions.includes(activity.name) ? activity.name : "Custom"
+  );
+  const [customName, setCustomName] = React.useState(
+    activityOptions.includes(activity.name) ? "" : activity.name
+  );
+
+  // Handle dropdown change
+  function handleOptionChange(event) {
+    const value = event.target.value;
+    setSelectedOption(value);
+    if (value !== "Custom") {
+      setUpdatedActivity({ ...updatedActivity, name: value });
+      setCustomName(""); // Clear custom name if predefined option is selected
+    }
+  }
+
+  // Handle custom name input
+  function handleCustomNameChange(event) {
+    const value = event.target.value;
+    setCustomName(value);
+    setUpdatedActivity({ ...updatedActivity, name: value });
+  }
+
+  // Handle goal array changes
   function handleGoalChange(dayIndex, value) {
     const newGoalArray = [...updatedActivity.goalArray];
     newGoalArray[dayIndex] = parseInt(value) || 0;
     setUpdatedActivity({ ...updatedActivity, goalArray: newGoalArray });
-  }
-
-  // Function to handle name change
-  function handleNameChange(value) {
-    setUpdatedActivity({ ...updatedActivity, name: value });
   }
 
   return (
@@ -34,15 +70,33 @@ export default function ActivityModal({
           </h3>
           <Button onClickFn={closeModal} caption="x"></Button>
         </div>
-        <label className="block mb-4">
+        <div className="block mb-4">
           <span className="text-[var(--cl-2)]">Activity Name:</span>
-          <input
-            type="text"
-            value={updatedActivity.name}
-            onChange={(e) => handleNameChange(e.target.value)}
+          <select
+            value={selectedOption}
+            onChange={handleOptionChange}
             className="ml-2 p-1 rounded border border-[var(--cl-2)] bg-[var(--cl-1)] text-[var(--cl-2)] w-full sm:w-auto"
-          />
-        </label>
+          >
+            {activityOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          {selectedOption === "Custom" && (
+            <input
+              type="text"
+              value={customName}
+              onChange={handleCustomNameChange}
+              placeholder="Enter custom activity name"
+              className="mt-2 ml-2 p-1 rounded border border-[var(--cl-2)] bg-[var(--cl-1)] text-[var(--cl-2)] w-full sm:w-auto"
+            />
+          )}
+        </div>
+        <div className="mb-4">
+          <span className="text-[var(--cl-2)]">Daily Completed: </span>
+          <span>{updatedActivity.dailyCompleted}</span>
+        </div>
         <div className="overflow-auto max-h-[50vh] rounded-[15px]">
           <table className="w-max min-w-full border-collapse">
             <thead>

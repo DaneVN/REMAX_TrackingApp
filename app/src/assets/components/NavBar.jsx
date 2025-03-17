@@ -46,7 +46,7 @@ export default function NavBar() {
         rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 pt-3 px-1.5 
         no-underline font-bold text-xs"
       >
-        Sheet
+        Activities
       </a>
       <a
         href="#graph"
