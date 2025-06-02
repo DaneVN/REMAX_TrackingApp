@@ -2,6 +2,19 @@
 import React from "react";
 import Button from "./Button";
 
+/**
+ * ActivityModal Component
+ * Displays a modal for editing or creating an activity.
+ * @param {Object} props - The component props.
+ * @param {boolean} props.isOpen - Whether the modal is open.
+ * @param {Object} props.activity - The activity data to edit or create.
+ * @param {Function} props.closeModal - Function to close the modal.
+ * @param {Function} props.onSaveChanges - Function to save changes to the activity.
+ * @param {Function} props.onDeleteActivity - Function to delete the activity.
+ * @param {Function} props.onActivityInc - Function to increment the activity count.
+ * * @returns {JSX.Element|null} The rendered ActivityModal component or null if not open.
+ * */
+
 export default function ActivityModal({
   isOpen,
   activity,

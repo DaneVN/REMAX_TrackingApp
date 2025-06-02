@@ -1,5 +1,12 @@
 import React from "react";
 import Plot from "react-plotly.js";
+/**
+ * Graph Component
+ * Displays a bar graph comparing current and previous month's activity data.
+ * @param {Object} props - The component props.
+ * @param {Object} props.data - The data containing current and previous month's activities.
+ * * @returns {JSX.Element} The rendered Graph component.
+ */
 
 const Graph = ({ data }) => {
   const dataCurr = [[], []];

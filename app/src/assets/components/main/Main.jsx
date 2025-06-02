@@ -5,6 +5,12 @@ import SheetCard from "./SheetCard";
 import GraphCard from "./GraphCard";
 import CalculatorCard from "./CalculatorCard";
 
+/* Main Component
+ * The main component that initializes the application state and renders various cards.
+ * It checks for month changes and updates the state accordingly.
+ * @returns {JSX.Element} The rendered Main component.
+ */
+
 export default function Main() {
   let initialData;
   if (localStorage.getItem("trackData")) {

@@ -1,5 +1,10 @@
 import React from "react";
 
+/* React component for displaying activities due today in a card format.
+ * @param {Object} data - The data containing activities and their goals.
+ * @returns {JSX.Element} The rendered DueCard component.
+ */
+
 export default function DueCard({ data }) {
   // const [isLoading, setIsLoading] = React.useState(true);
 

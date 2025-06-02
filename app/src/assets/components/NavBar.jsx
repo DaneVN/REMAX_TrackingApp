@@ -1,5 +1,10 @@
 import React from "react";
 
+/* React component for displaying calculator results
+ * @param {Object} data - The data containing activities and their goals.
+ * @returns {JSX.Element} The rendered NavBar component.
+ * */
+
 export default function NavBar() {
   const resetData = () => {
     let isReset = window.confirm("Are you sure you want to reset ALL data?");

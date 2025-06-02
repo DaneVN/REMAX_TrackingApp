@@ -3,6 +3,17 @@ import ActivityTable from "../../elements/ActivityTable";
 import ActivityModal from "../../elements/ActivityModal";
 import Button from "../../elements/Button";
 
+/**
+ * SheetCard Component
+ * Displays a card with activities, allowing users to add, edit, and track their progress.
+ * @param {Object} props - The component props.
+ * @param {Array} props.progress - The progress data for activities.
+ * @param {Array} props.data - The current activities data.
+ * @param {Function} props.updateCurr - Function to update the current activities.
+ * @param {Function} props.updateProgress - Function to update the progress data.
+ * * @returns {JSX.Element} The rendered SheetCard component.
+ * */
+
 export default function SheetCard({
   progress,
   data,

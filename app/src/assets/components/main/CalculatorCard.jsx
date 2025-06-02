@@ -1,6 +1,11 @@
 import { useState } from "react";
 import CalculatorResult from "./CalculatorResult";
 
+/* * CalculatorCard Component
+ * A form-based calculator for real estate agents to compute various financial metrics.
+ * @returns {JSX.Element} The rendered calculator card component.
+ */
+
 export default function CalculatorCard() {
   const [calculatorData, setCalculatorData] = useState({
     purchasePrice: 0,

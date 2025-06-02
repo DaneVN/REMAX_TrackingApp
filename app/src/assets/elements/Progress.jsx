@@ -1,5 +1,14 @@
 import React from "react";
 
+/**
+ * ActivityTable Component
+ * Displays a table of activities with their goals for each day of the current month.
+ * @param {Object} props - The component props.
+ * @param {Array} props.data - The activity data containing names and goal arrays.
+ * @param {Function} props.openModalFn - Function to open the modal with activity details.
+ * * @returns {JSX.Element} The rendered ActivityTable component.
+ */
+
 export default function ProgressCard({ activity, goal, complete }) {
   const progressPercent = (complete / goal) * 100;
   if (goal !== 0) {

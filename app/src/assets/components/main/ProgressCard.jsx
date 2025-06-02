@@ -1,6 +1,14 @@
 import React from "react";
 import Progress from "../../elements/Progress";
 
+/**
+ * ProgressCard Component
+ * Displays the weekly progress of activities in a card format.
+ * @param {Object} props - The component props.
+ * @param {Array} props.data - The data containing activities and their goals.
+ * @returns {JSX.Element} The rendered ProgressCard component.
+ */
+
 export default function ProgressCard({ data }) {
   let currWeek = new Date();
 
