@@ -33,6 +33,14 @@ export default function NavBar() {
         Home
       </a>
       <a
+        href="#home"
+        className="text-center active:bg-[var(--cl-6)] hover:bg-[var(--cl-3)] 
+        rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 pt-3 px-2 
+        no-underline font-bold text-xs"
+      >
+        Comm.
+      </a>
+      <a
         href="#progress"
         className="text-center active:bg-[var(--cl-6)] hover:bg-[var(--cl-3)]  
         rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 pt-3 px-2 
@@ -46,7 +54,7 @@ export default function NavBar() {
         rounded-t-3xl bg-[var(--cl-5)] text-[var(--cl-2)] w-1/6 pt-3 px-1.5 
         no-underline font-bold text-xs"
       >
-        Activities
+        Tasks
       </a>
       <a
         href="#graph"
