@@ -43,16 +43,16 @@ export function AgentCommission(data) {
         style: "currency",
         currency: "ZAR",
       }),
-      commissionPercentage: commisionFactor * 100,
+      commissionPercentage: (commisionFactor * 100).toFixed(3) + "%",
       grossCommission: parseFloat(grossCommission).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      lessVat: parseFloat(lessVat).toLocaleString("en-ZA", {
+      lessVAT: parseFloat(lessVat).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      totalAfterVat: parseFloat(totalAfterVat).toLocaleString("en-ZA", {
+      totalAfterVAT: parseFloat(totalAfterVat).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
@@ -64,11 +64,11 @@ export function AgentCommission(data) {
         style: "currency",
         currency: "ZAR",
       }),
-      agentSplitWithUnity: parseFloat(unitySplit).toLocaleString("en-ZA", {
+      totalAfterSplitWithUnity: parseFloat(unitySplit).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      paye: parseFloat(paye).toLocaleString("en-ZA", {
+      PAYE: parseFloat(paye).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
@@ -101,11 +101,11 @@ export function AgentCommission(data) {
         style: "currency",
         currency: "ZAR",
       }),
-      lassVat: parseFloat(lessVat).toLocaleString("en-ZA", {
+      lassVAT: parseFloat(lessVat).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      totalAfterVat: parseFloat(totalAfterVat).toLocaleString("en-ZA", {
+      totalAfterVAT: parseFloat(totalAfterVat).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
@@ -117,7 +117,7 @@ export function AgentCommission(data) {
         style: "currency",
         currency: "ZAR",
       }),
-      agentSplitWithUnity: parseFloat(unitySplit).toLocaleString("en-ZA", {
+      totalAfterSplitWithUnity: parseFloat(unitySplit).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),

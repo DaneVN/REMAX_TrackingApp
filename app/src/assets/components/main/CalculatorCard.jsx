@@ -60,7 +60,7 @@ export default function CalculatorCard() {
     >
       <div>
         <h2 className="justify-self-center underline font-bold text-3xl my-5">
-          Calculator:
+          Commission Calculator:
         </h2>
         <div className="flex flex-col items-center justify-center h-full">
           <form
@@ -154,14 +154,14 @@ export default function CalculatorCard() {
                   name="unitySplit"
                   className="mt-2 p-2 rounded border border-gray-300"
                 >
+                  <option value={50} className="text-black">
+                    50|50
+                  </option>
                   <option value={90} className="text-black">
                     90|10
                   </option>
                   <option value={70} className="text-black">
                     70|30
-                  </option>
-                  <option value={50} className="text-black">
-                    50|50
                   </option>
                 </select>
               </label>
@@ -173,6 +173,7 @@ export default function CalculatorCard() {
                   name="paye"
                   className="mt-2 p-2 rounded border border-gray-300 w-11/12"
                   placeholder="..."
+                  defaultValue={18}
                   min={0}
                 />{" "}
                 %
