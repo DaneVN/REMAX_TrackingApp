@@ -1,5 +1,22 @@
 const VAT = 15 / 100;
 
+/* * Commission Calculator for Real Estate Agents
+ * This function calculates the commission for real estate agents based on the purchase price,
+ * commission percentage, agent split, royalty, unity split, and PAYE.
+ * @param {Object} data - The input data containing the necessary parameters.
+ * @returns {Object} - An object containing the calculated commission details.
+ * @property {string} purchasePrice - The purchase price of the property.
+ * @property {string} commissionPercentage - The percentage of the commission.
+ * @property {string} grossCommission - The total gross commission amount.
+ * @property {string} vatOnGrossCommission - The VAT amount on the gross commission.
+ * @property {string} totalAfterVat - The total amount after VAT deduction.
+ * @property {string} royalty - The royalty amount deducted from the total after VAT.
+ * @property {string} totalAfterRoyalty - The total amount after royalty deduction.
+ * @property {string} unitySplit - The agent's share after royalty deduction.
+ * @property {string} paye - The PAYE amount deducted from the unity split.
+ * @property {string} nettPaymentToAgent - The final payment to the agent after PAYE deduction.
+ */
+
 export function AgentCommission(data) {
   //logic for commission on purchase price
   if (!data.grossCommision) {
@@ -11,56 +28,54 @@ export function AgentCommission(data) {
 
     const grossCommission = purchasePrice * commisionFactor;
 
-    const lessVat = grossCommission - grossCommission / (1 + VAT);
-    const totalAfterVat = (grossCommission - lessVat).toFixed(2);
+    const lessVat = grossCommission - (grossCommission / (1 + VAT)).toFixed(2);
+
+    const totalAfterVat = grossCommission - lessVat;
     const royalty = totalAfterVat * (data.royalty / 100);
     const totalAfterRoyalty = (totalAfterVat - royalty).toFixed(2);
 
-    const unitySplit = (
-      totalAfterVat * (data.unitySplit / 100) -
-      royalty
-    ).toFixed(2);
+    const unitySplit = totalAfterVat * (data.unitySplit / 100) - royalty;
 
     const paye = unitySplit * (data.paye / 100);
     //return results in object format
     return {
-      purchasePrice: parseInt(purchasePrice).toLocaleString("en-ZA", {
+      purchasePrice: parseFloat(purchasePrice).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      commissionPercentage: commisionFactor,
-      grossCommission: parseInt(grossCommission).toLocaleString("en-ZA", {
+      commissionPercentage: commisionFactor * 100,
+      grossCommission: parseFloat(grossCommission).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      vatOnGrossCommission: parseInt(lessVat).toLocaleString("en-ZA", {
+      lessVat: parseFloat(lessVat).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      totalAfterVat: parseInt(totalAfterVat).toLocaleString("en-ZA", {
+      totalAfterVat: parseFloat(totalAfterVat).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      royalty: parseInt(royalty).toLocaleString("en-ZA", {
+      royalty: parseFloat(royalty).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      totalAfterRoyalty: parseInt(totalAfterRoyalty).toLocaleString("en-ZA", {
+      totalAfterRoyalty: parseFloat(totalAfterRoyalty).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      unitySplit: parseInt(unitySplit).toLocaleString("en-ZA", {
+      agentSplitWithUnity: parseFloat(unitySplit).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      paye: parseInt(paye).toLocaleString("en-ZA", {
+      paye: parseFloat(paye).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      nettPaymentToAgent: parseInt(unitySplit - paye).toLocaleString("en-ZA", {
-        style: "currency",
-        currency: "ZAR",
-      }),
+      nettPaymentToAgent: parseFloat(unitySplit - paye).toLocaleString(
+        "en-ZA",
+        { style: "currency", currency: "ZAR" }
+      ),
     };
   } else {
     //logic for fixed gross commission
@@ -78,42 +93,45 @@ export function AgentCommission(data) {
     const paye = unitySplit * (data.paye / 100);
     //return results in object format
     return {
-      purchasePrice: parseInt(data.purchasePrice).toLocaleString("en-ZA", {
+      purchasePrice: parseFloat(data.purchasePrice).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      grossCommission: parseInt(grossCommission).toLocaleString("en-ZA", {
+      grossCommission: parseFloat(grossCommission).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      vatOnGrossCommission: parseInt(lessVat).toLocaleString("en-ZA", {
+      lassVat: parseFloat(lessVat).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      totalAfterVat: parseInt(totalAfterVat).toLocaleString("en-ZA", {
+      totalAfterVat: parseFloat(totalAfterVat).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      royalty: parseInt(royalty).toLocaleString("en-ZA", {
+      royalty: parseFloat(royalty).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      totalAfterRoyalty: parseInt(totalAfterRoyalty).toLocaleString("en-ZA", {
+      totalAfterRoyalty: parseFloat(totalAfterRoyalty).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      unitySplit: parseInt(unitySplit).toLocaleString("en-ZA", {
+      agentSplitWithUnity: parseFloat(unitySplit).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      paye: parseInt(paye).toLocaleString("en-ZA", {
+      paye: parseFloat(paye).toLocaleString("en-ZA", {
         style: "currency",
         currency: "ZAR",
       }),
-      nettPaymentToAgent: parseInt(unitySplit - paye).toLocaleString("en-ZA", {
-        style: "currency",
-        currency: "ZAR",
-      }),
+      nettPaymentToAgent: parseFloat(unitySplit - paye).toLocaleString(
+        "en-ZA",
+        {
+          style: "currency",
+          currency: "ZAR",
+        }
+      ),
     };
   }
 }
